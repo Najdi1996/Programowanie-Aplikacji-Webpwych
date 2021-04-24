@@ -1,57 +1,101 @@
-class StatsApp{
-    liczba1Input: HTMLInputElement;
-    liczba2Input: HTMLInputElement;
-    liczba3Input: HTMLInputElement;
-    liczba4Input: HTMLInputElement;
-    sumaInput: HTMLInputElement;
-    sredniaInput: HTMLInputElement;
-    minInput: HTMLInputElement;
-    maxInput: HTMLInputElement;
+class Project
+{
+    buttons: NodeListOf<HTMLInputElement> | undefined;
+    inputsData: number[] = [];
+
     constructor()
     {
-        this.startApp();
+        this.init();
     }
-    startApp() 
+
+    init()
     {
-        this.getInputs();
-        this.watchInputValues();
+        this.assignData();
+        this.assignEvents();
     }
-    getInputs(){
-        this.liczba1Input = document.querySelector('#liczba1');
-        this.liczba2Input = document.querySelector('#liczba2');
-        this.liczba3Input = document.querySelector('#liczba3');
-        this.liczba4Input = document.querySelector('#liczba4');
-        this.sumaInput = document.querySelector('#suma');
-        this.sredniaInput = document.querySelector('#srednia');
-        this.minInput = document.querySelector('#min');
-        this.maxInput = document.querySelector('#max');
-    }
-    showStats(suma: number , srednia: number, min: number, max: number) 
+
+    assignData()
     {
-        this.sumaInput.value = suma.toString();
-        this.sredniaInput.value = srednia.toString();
-        this.minInput.value = min.toString();
-        this.maxInput.value = max.toString();
+        this.buttons = document.getElementById("inputs-container")?.querySelectorAll("input");
+
     }
-    computeData()
+
+    assignEvents()
     {
-        const liczba1 = +this.liczba1Input.value;
-        const liczba2 = +this.liczba2Input.value;
-        const liczba3 = +this.liczba3Input.value;
-        const liczba4 = +this.liczba4Input.value;
-        const suma = liczba1 + liczba2 + liczba3 + liczba4;
-        const srednia = suma / 4;
-        const min = Math.min(liczba1 , liczba2 , liczba3 , liczba4);
-        const max = Math.max(liczba1 , liczba2 , liczba3 , liczba4);
-        this.showStats(suma , srednia , min , max);
+        if(this.buttons != undefined) {
+            this.buttons.forEach((button: HTMLInputElement) => {
+                button.addEventListener("input", (e: any) => {
+                    this.updateInputsData();
+                    this.updateData();
+                });
+            });
+        }
     }
-    watchInputValues()
+
+    updateInputsData()
     {
-        this.liczba1Input.addEventListener('input' , () => this.computeData());
-        this.liczba2Input.addEventListener('input' , () => this.computeData());
-        this.liczba3Input.addEventListener('input' , () => this.computeData());
-        this.liczba4Input.addEventListener('input' , () => this.computeData());
+        let inputsData: number[] = [];
+
+        if(this.buttons != undefined) {
+            this.buttons.forEach((button: HTMLInputElement) => {
+                if(this.isNumber(button.value))
+                    inputsData.push(Number(button.value));
+            });
+        }
+
+        this.inputsData = inputsData;
+    }
+
+    countMin()
+    {
+        return Math.min.apply(Math, this.inputsData);
+    }
+
+    countMax()
+    {
+        return Math.max.apply(Math, this.inputsData);
+    }
+
+    countAvg()
+    {
+        return this.countSum() / this.inputsData.length;
+    }
+
+    countSum()
+    {
+        let sum = 0;
+        this.inputsData.forEach(val => {
+            sum += val;
+        });
+
+        return sum;
+    }
+
+    updateData()
+    {
+        let inpSum: HTMLInputElement | null = document.querySelector("#sum");
+        let inpAvg: HTMLInputElement | null = document.querySelector("#avg");
+        let inpMin: HTMLInputElement | null = document.querySelector("#min");
+        let inpMax: HTMLInputElement | null = document.querySelector("#max");
+
+        if(inpSum != null) {
+            inpSum.value = String(this.countSum());
+        }
+        if(inpAvg != null) {
+            inpAvg.value = String(this.countAvg());
+        }
+        if(inpMin != null) {
+            inpMin.value = String(this.countMin());
+        }
+        if(inpMax != null) {
+            inpMax.value = String(this.countMax());
+        }
+    }
+
+    isNumber(value: string | number): boolean
+    {
+        return ((value != null) &&(value !== '') && !isNaN(Number(value.toString())));
     }
 }
 
-const statsApp = new StatsApp();
+let project = new Project();
