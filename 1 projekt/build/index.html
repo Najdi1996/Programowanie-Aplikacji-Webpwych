@@ -4,25 +4,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aplikacja statystyki</title>
+    <title>Obliczanie SUM MIN MAX AVG</title>
 </head>
 <body>
-    <div class="input-liczby">
-        <input type = "text" id = "liczba1">
-        <input type = "text" id = "liczba2">
-        <input type = "text" id = "liczba3">
-        <input type = "text" id = "liczba4">
+    <div id="inputs-container">
+        <input type="text" id="data1"/>
+        <input type="text" id="data2"/>
+        <input type="text" id="data3"/>
+        <input type="text" id="data4"/>
     </div>
-    <div class = "stats-liczby">
-        <div>Suma:</div>
-        <input type = "text" id = "suma">
-        <div>Średnia:</div>
-        <input type = "text" id = "srednia">
-        <div>MIN:</div>
-        <input type = "text" id = "min">
-        <div>MAX:</div>
-        <input type = "text" id = "max">
+    <div class="inputs-results-container">
+        <label for="sum">Suma:</label>
+        <input type="text" disabled id="sum"/>
+
+        <label for="sum">Średnia:</label>
+        <input type="text" disabled id="avg"/>
+
+        <label for="sum">MIN:</label>
+        <input type="text" disabled id="min"/>
+
+        <label for="sum">MAX:</label>
+        <input type="text" disabled id="max"/>
     </div>
-    <script src= "index.ts"></script>
+    <script src= "../src/index.js"></script>
 </body>
 </html>
