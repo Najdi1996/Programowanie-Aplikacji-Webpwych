@@ -24,7 +24,7 @@ body {
 .keyboardKey {
     width: 90px;
     height: 90px;
-    background-color: rgb(42, 182, 182);
+    background-color: rgb(196, 21, 21);
     border-radius: 5px;
     margin: 5px;
     display: flex;
@@ -41,5 +41,5 @@ body {
 }
 
 .keyboardKey:active {
-    background-color: rgb(39, 175, 175);
+    background-color: rgb(196, 21, 21);
 }
