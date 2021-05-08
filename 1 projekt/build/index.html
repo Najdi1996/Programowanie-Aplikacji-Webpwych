@@ -4,28 +4,46 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Obliczanie SUM MIN MAX AVG</title>
+    <title>Lab 1</title>
 </head>
 <body>
-    <div id="inputs-container">
-        <input type="text" id="data1"/>
-        <input type="text" id="data2"/>
-        <input type="text" id="data3"/>
-        <input type="text" id="data4"/>
+    <div class = "quantity-data">
+        <label>Ile wartości ma zostać wprowadzone?</label>
+        <br>
+        <input type = "text" id= "inputs">
     </div>
-    <div class="inputs-results-container">
-        <label for="sum">Suma:</label>
-        <input type="text" disabled id="sum"/>
-
-        <label for="sum">Średnia:</label>
-        <input type="text" disabled id="avg"/>
-
-        <label for="sum">MIN:</label>
-        <input type="text" disabled id="min"/>
-
-        <label for="sum">MAX:</label>
-        <input type="text" disabled id="max"/>
+    <br>
+    <label>Dane :</label>
+     <br>
+    <div class = "input-data">
     </div>
-    <script src= "../src/index.js"></script>
+    <br>
+    <div class="stats-data">
+        <div>
+            <label>Suma :</label>
+            <br>
+            <input type="text" id="sum">
+        </div>
+        <br>
+        <div>
+            <label>Średnia :</label>
+            <br>
+            <input type="text" id="avg">
+        </div>
+        <br>
+        <div>
+            <label>MIN :</label>
+            <br>
+            <input type="text" id="min">
+        </div>
+        <br>
+        <div>
+            <label>MAX :</label>
+            <br>
+            <input type="text" id="max">
+        </div>
+        <br>
+    </div>
+    <script src="index.js"></script>
 </body>
 </html>
